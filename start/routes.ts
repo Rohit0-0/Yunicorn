@@ -1,8 +1,11 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
-router.get('/', async () => {
-    return 'hello world from routes'})
 
+router.get('/', async ({request}) => {
+    return 'hello world from routes'
+    console.log(request.body())
+})
+    
     router.get('/about', () => {
       return 'This is the about page.'
     })
@@ -11,7 +14,6 @@ router.get('/', async () => {
       return `This is post with id ${params.id} and title ${params.title}`
     })
     router.get('/posts/:first/*', ({ params }) => {
-        console.log({params})
         return `This is post with id ${params.first} and title ${params['*']}`}
     )
 router
