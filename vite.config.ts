@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import adonisjs from '@adonisjs/vite/client'
-
 export default defineConfig({
   plugins: [
     adonisjs({
@@ -14,6 +13,7 @@ export default defineConfig({
        * Paths to watch and reload the browser on file change
        */
       reload: ['resources/views/**/*.edge'],
+      assetsUrl: 'https://cdn.example.com/',
     }),
   ],
 })

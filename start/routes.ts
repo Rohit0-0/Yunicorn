@@ -4,31 +4,32 @@ import { middleware } from './kernel.js'
 import fs from 'fs'
 import app from '@adonisjs/core/services/app'
 import UserAvatarsController from '#controllers/UserAvatarController'
-router.get('/', async ({response}) => {
-  /** Plain string */
-  // return 'This is the homepage.'
+router.on('/').render('pages/home')
+// router.get('/', async ({response}) => {
+//   /** Plain string */
+//   // return 'This is the homepage.'
 
-  /** Html fragment */
-  // return '<h1> This is the homepage </h1>'
+//   /** Html fragment */
+//   // return '<h1> This is the homepage </h1>'
 
-  /** JSON response */
-  // return ({ page: 'home' })
+//   /** JSON response */
+//   // return ({ page: 'home' })
 
-  /** Converted to ISO string */
-  // console.log(time)
-  // return Date()
+//   /** Converted to ISO string */
+//   // console.log(time)
+//   // return Date()
 
-  // response.status(200).send('hello hello')
- 
+//   // response.status(200).send('hello hello')
+//   // response.status(201).send('hello hello')
    
-  if (!fs.existsSync('./public/image.png')) {
-    return response.status(404).send('File not   not found')
-  }
+//   if (!fs.existsSync('./public/image.png')) {
+//     return response.status(404).send('File not   not found')
+//   }
 
-  const imageStream = fs.createReadStream('./public/image.png')
-  response.header('Content-Type', 'image/png')
-  return response.stream(imageStream)
-})
+//   const imageStream = fs.createReadStream('./public/image.png')
+//   response.header('Content-Type', 'image/png')
+//   return response.stream(imageStream)
+// })
 
 
 

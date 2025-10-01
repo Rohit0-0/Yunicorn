@@ -10,7 +10,6 @@
 
 import router from '@adonisjs/core/services/router'
 import server from '@adonisjs/core/services/server'
-import staticServer from '#config/static'
 /**
  * The error handler is used to convert an exception
  * to an HTTP response.
