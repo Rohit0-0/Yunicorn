@@ -8,8 +8,9 @@
 |
 */
 
-import  router from '@adonisjs/core/services/router'
+import router from '@adonisjs/core/services/router'
 import server from '@adonisjs/core/services/server'
+import staticServer from '#config/static'
 /**
  * The error handler is used to convert an exception
  * to an HTTP response.
@@ -25,6 +26,7 @@ server.use([
   () => import('#middleware/container_bindings_middleware'),
   () => import('@adonisjs/static/static_middleware'),
   () => import('@adonisjs/vite/vite_middleware'),
+
 ])
 
 /**
@@ -34,12 +36,13 @@ server.use([
 router.use([
   () => import('@adonisjs/core/bodyparser_middleware'),
   () => import('@adonisjs/session/session_middleware'),
-  () => import('@adonisjs/shield/shield_middleware'),
+  // () => import('@adonisjs/shield/shield_middleware'),
   () => import('#middleware/bodyparser_middleware'),
- 
-  
+
+
 
 ])
+
 export const middleware = router.named({
   simple: () => {
     // Lazy import that returns a Promise resolving to { default: Class }
