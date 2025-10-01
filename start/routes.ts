@@ -1,15 +1,75 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+// import { time } from 'console'
+import fs from 'fs'
+import app from '@adonisjs/core/services/app'
+router.get('/', async ({response}) => {
+  /** Plain string */
+  // return 'This is the homepage.'
 
-router.get('/', async ({ /*logger*/ request }) => {
-  // console.log(request.ip())  // --- IGNORE ---
-  // console.log(request.types())
-  // console.log(request.accepts(['rohit', 'json', 'xml', 'html']))  // --- IGNORE ---
-  console.log(request.id())
-  // console.log(logger.info())  // --- IGNORE ---
+  /** Html fragment */
+  // return '<h1> This is the homepage </h1>'
 
-  return 'hello world from routes'
+  /** JSON response */
+  // return ({ page: 'home' })
+
+  /** Converted to ISO string */
+  // console.log(time)
+  // return Date()
+
+  // response.status(200).send('hello hello')
+ 
+   
+  if (!fs.existsSync('./public/image.png')) {
+    return response.status(404).send('File not   not found')
+  }
+
+  const imageStream = fs.createReadStream('./public/image.png')
+  response.header('Content-Type', 'image/png')
+  return response.stream(imageStream)
 })
+
+
+
+
+router.get('/image/:fd',async({ response,params })=>
+{
+  const filepath = app.makePath(`public/${params.fd}.png`)
+  const generateEtag = true
+  response.download(filepath,generateEtag)
+}
+)
+
+
+router.get('/posts', async ({ response }) => {
+  
+  response.abort({message:"this is from abort"})
+  response.redirect().toPath('/articles')
+  console.log(response.response)
+})
+
+// router.get('/articles', async ({ response }) => {
+//   response.redirect().toPath('./posts')
+// })
+
+
+
+
+
+
+
+
+
+
+// router.get('/', async ({ /*logger*/ request }) => {
+//   // console.log(request.ip())  // --- IGNORE ---
+//   // console.log(request.types())
+//   // console.log(request.accepts(['rohit', 'json', 'xml', 'html']))  // --- IGNORE ---
+//   console.log(request.id())
+//   // console.log(logger.info())  // --- IGNORE ---
+
+//   return 'hello world from routes'
+// })
 router.patch('/', async ({ request }) => {
   return 'hello world from routes'
 })
