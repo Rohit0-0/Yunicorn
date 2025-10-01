@@ -3,6 +3,7 @@ import { middleware } from './kernel.js'
 // import { time } from 'console'
 import fs from 'fs'
 import app from '@adonisjs/core/services/app'
+import UserAvatarsController from '#controllers/UserAvatarController'
 router.get('/', async ({response}) => {
   /** Plain string */
   // return 'This is the homepage.'
@@ -31,6 +32,8 @@ router.get('/', async ({response}) => {
 
 
 
+router.post('/avatar', [UserAvatarsController, 'update'])
+
 
 router.get('/image/:fd',async({ response,params })=>
 {
@@ -45,7 +48,7 @@ router.get('/posts', async ({ response }) => {
   
   response.abort({message:"this is from abort"})
   response.redirect().toPath('/articles')
-  console.log(response.response)
+ 
 })
 
 // router.get('/articles', async ({ response }) => {
