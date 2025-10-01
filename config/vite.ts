@@ -23,6 +23,7 @@ const viteBackendConfig = defineConfig({
   scriptAttributes: {
     defer: true,
   },
+  
 })
 
 export default viteBackendConfig

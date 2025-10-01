@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    @vite('resources/js/app.js')
+    @viteReactRefresh()
     <title>
       AdonisJS - A fully featured web framework for Node.js
     </title>
@@ -70,8 +72,8 @@
     @stack('dumper')
   </head>
   <body class="min-h-screen w-screen font-sans">
-   
+    <img src="{{'resources/images/image.png'}}" alt="My Image" />
 
-    <p> Hello world</p>
+    <p> Hello world from home page</p><p>refresh</p>
   </body>
 </html>
