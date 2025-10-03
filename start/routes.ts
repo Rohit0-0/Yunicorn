@@ -43,6 +43,19 @@ router.get('/image/:fd',async({ response,params })=>
   response.download(filepath,generateEtag)
 }
 )
+router.get('/images/:fd', async ({ response, params }) => {
+  const fileName = params.fd // get the 'fd' parameter from the URL
+  const filePath = `./public/uploads/${fileName}.png`
+
+  // Check if file exists
+  if (!fs.existsSync(filePath)) {
+    return response.status(404).send('Image not found')
+  }
+
+  const imageStream = fs.createReadStream(filePath)
+  response.header('Content-Type', 'image/png')
+  return response.stream(imageStream)
+})
 
 
 router.get('/posts', async ({ response }) => {
